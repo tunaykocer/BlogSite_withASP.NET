@@ -1,0 +1,93 @@
+﻿@model tunayy.ViewModels.PageVM
+
+@{
+    ViewData["Title"] = "Site Çalışma Mantığı Sayfası";
+}
+
+<div class="container-fluid">
+    <a class="btn btn-orange mb-1" asp-action="Index" asp-controller="Post">Geri Dön</a>
+    <div class="card">
+        <div class="card-header bg-orange">
+            <h4 class="card-title text-white">Site Çalışma Mantığı Sayfası</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Privacy" asp-controller="Page" asp-area="Admin" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Resim" />
+                <div class="row mb-2">
+                    <div class="col-9">
+                        <div class="mb-2">
+                            <label>Başlık</label>
+                            <input type="text" asp-for="Baslik" class="form-control" />
+                            <span asp-validation-for="Baslik" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label>Kısa Açıklama</label>
+                            <input type="text" asp-for="KisaAciklama" class="form-control" />
+                            <span asp-validation-for="KisaAciklama" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label>Açıklama</label>
+                            <textarea id="richEditor" asp-for="Aciklama" class="form-control" rows="8"></textarea>
+                            <span asp-validation-for="Aciklama" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="mb-2">
+                            @{
+                                if (Model.Resim == null)
+                                {
+                                    <img src="~/thumbnails/default_image.png" class="img-fluid" id="thumbnail" />
+                                }
+                                else
+                                {
+                                    <img src="~/thumbnails/@Model.Resim" class="img-fluid" id="thumbnail" />
+                                }
+                            }
+                        </div>
+                        <div class="mb-2">
+                            <label>Küçük Resim</label>
+                            <input type="file" asp-for="Resimm" class="custom-file" />
+                            <span asp-validation-for="Resimm" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <button type="submit" class="btn btn-orange w-100">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(".custom-file").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0])
+        });
+    </script>
+}
+
+<style>
+    .bg-orange {
+        background-color: #FFA500; /* Turuncu */
+    }
+
+    .btn-orange {
+        background-color: #FFA500; /* Turuncu */
+        border-color: #FFA500; /* Turuncu */
+        color: #fff;
+    }
+
+        .btn-orange:hover {
+            background-color: #FF8C00; /* Koyu Turuncu */
+            border-color: #FF8C00; /* Koyu Turuncu */
+        }
+
+    .text-white {
+        color: #ffffff; /* Beyaz renk */
+    }
+</style>

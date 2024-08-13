@@ -1,0 +1,82 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model IPagedList<tunayy.ViewModels.PostVM>
+
+@{
+    ViewData["Title"] = "Gönderi Listesi";
+}
+
+<div class="container-fluid">
+    <a class="btn btn-orange mb-1" asp-action="Create" asp-controller="Post" asp-area="Admin">Yeni Gönderi Ekle</a>
+    <div class="card">
+        <div class="card-header bg-orange">
+            <h4 class="card-title text-white">Gönderi Listesi</h4>
+        </div>
+        <div class="card-body" style="background-color:lightgray;">
+            @foreach (var post in Model)
+            {
+                <div class="rounded mb-4 bg-white p-2">
+                    <div class="row">
+                        <div class="col-2 d-flex justify-content-center flex-column">
+                            @if (post.Resim == null)
+                            {
+                                <img class="img-fluid" src="~/thumbnails/default_image.png" style="object-fit:cover; height:100%; width:100%">
+                            }
+                            else
+                            {
+                                <img class="img-fluid" src="~/thumbnails/@post.Resim" style="object-fit:cover; height:100%; width:100%">
+                            }
+                        </div>
+                        <div class="col-5 d-flex justify-content-center flex-column">
+                            <h4 style="font-size:1.5rem; font-weight:bolder;" class="text-white fw-bold">@post.Baslik</h4>
+                            <p>@post.CreatedDate</p>
+                        </div>
+                        <div class="col-5 text-right d-flex justify-content-center flex-column">
+                            <h4 style="font-size:1rem;" class="fw-bold">@post.YazanKisi</h4>
+                            <div class="d-flex justify-content-end align-items-center">
+                                <a class="btn btn-warning" asp-area="Admin" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" method="post">Düzenle</a> |
+                                <form asp-area="Admin" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" method="post" onsubmit="return confirm('Bu gönderiyi silmek istediğinizden emin misiniz?')">
+                                    <button type="submit" class="btn btn-danger">Sil</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            Sayfa @(Model?.PageCount < Model?.PageNumber ? 0 : Model?.PageNumber) / @Model?.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
+                     new PagedListRenderOptions()
+            {
+                ContainerDivClasses = new List<string> { "blog", "navigation" },
+                UlElementClasses = new List<string> { "pagination" },
+                LiElementClasses = new List<string> { "page-item", "page-link" },
+                ActiveLiElementClass = "active",
+            })
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-orange {
+        background-color: #FFA500; /* Turuncu */
+    }
+
+    .btn-orange {
+        background-color: #FFA500; /* Turuncu */
+        border-color: #FFA500; /* Turuncu */
+        color: #fff;
+    }
+
+        .btn-orange:hover {
+            background-color: #FF8C00; /* Koyu Turuncu */
+            border-color: #FF8C00; /* Koyu Turuncu */
+        }
+
+    .text-white {
+        color: #ffffff; /* Beyaz renk */
+    }
+</style>

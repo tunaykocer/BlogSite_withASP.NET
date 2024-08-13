@@ -1,0 +1,80 @@
+﻿@model tunayy.ViewModels.LoginVM
+
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Login";
+}
+
+<!-- Outer Row -->
+<div class="row justify-content-center">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-orange-900 mb-4">Hosgeldin</h1>
+                            </div>
+                            <form class="user" method="post" asp-action="Login">
+                                <div class="form-group">
+                                    <input asp-for="KullaniciAdi" type="text" class="form-control form-control-user"
+                                           id="exampleInputEmail" aria-describedby="emailHelp"
+                                           placeholder="Kullanici adini gir :">
+                                    <span asp-validation-for="KullaniciAdi" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Sifre" type="password" class="form-control form-control-user"
+                                           id="exampleInputPassword" placeholder="Sifre">
+                                    <span asp-validation-for="Sifre" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox small">
+                                        <input asp-for="HatirlaBeni" type="checkbox" class="custom-control-input" id="customCheck">
+                                        <label class="custom-control-label" for="customCheck">
+                                            Beni Hatirla
+                                        </label>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-orange btn-user btn-block" value="Login">
+
+                            </form>
+                            <hr>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .bg-login-image {
+        background-color: #fd7e14; /* Turuncu arka plan */
+    }
+
+    .text-orange-900 {
+        color: #fd7e14; /* Turuncu başlık rengi */
+    }
+
+    .btn-orange {
+        background-color: #fd7e14 !important; /* Turuncu buton arka planı */
+        border-color: #fd7e14 !important; /* Turuncu buton kenar rengi */
+    }
+
+        .btn-orange:hover {
+            background-color: #e67e22 !important; /* Hover durumunda daha koyu turuncu */
+            border-color: #e67e22 !important; /* Hover durumunda daha koyu turuncu kenar rengi */
+        }
+
+    .text-orange {
+        color: #fd7e14; /* Turuncu metin rengi */
+    }
+</style>

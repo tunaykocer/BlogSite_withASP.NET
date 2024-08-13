@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - tunayy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    @model tunayy.ViewModels.PageVM
+
+    @{
+        ViewData["Title"] = "About";
+
+        string pageThumbnail = "";
+
+        if (Model.Resim == null)
+        {
+            pageThumbnail = "/blog/assets/img/about-bg.jpg";
+        }
+        else
+        {
+            pageThumbnail = "/thumbnails/" + Model.Resim;
+        }
+    }
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('@pageThumbnail')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>@Model.Baslik</h1>
+                        <span class="subheading">@Model.KisaAciklama</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    @Html.Raw(Model.Aciklama)
+
+                    <div class="about-me">
+                        <h2>Hakkımda</h2>
+                        <p>Ben Tunay Koçer. 20 yaşındayım ve yazılım dünyasında kendime sağlam bir yer edinmek için çalışıyorum. Yazılımcı olarak teknolojinin gücünü kullanarak yenilikçi çözümler üretmeyi seviyorum. Çocukluğumdan beri bilgisayarlarla iç içeyim ve bu ilgim zamanla tutkuya dönüştü. Bu süreçte birçok programlama dili öğrendim ve projeler geliştirdim.</p>
+
+                        <p>Futbol, hayatımda önemli bir yere sahip. Hem oynamayı hem de izlemeyi çok seviyorum. Futbolun getirdiği takım ruhu ve strateji, yazılım geliştirme süreçlerimde de bana ilham veriyor. Boş zamanlarımda sık sık futbol oynar veya favori takımlarımın maçlarını izlerim. Bu aktiviteler, zihnimi taze tutmama ve yeni fikirler üretmeme yardımcı oluyor.</p>
+
+                        <p>Seyahat etmek ve yeni yerler keşfetmek de büyük bir tutkudur benim için. Özellikle Ege Bölgesi'nin güzelliklerine hayranım. Ege turları yaparak, bölgenin tarihi ve doğal güzelliklerini keşfetmekten büyük keyif alıyorum. Her seyahat, bana yeni perspektifler kazandırıyor ve bu da yazılımcı olarak problem çözme becerilerimi geliştiriyor.</p>
+
+                        <p>Yazılım dünyasında C#, JavaScript, Python ve Java gibi dilleri kullanıyorum. Her bir dilin kendine özgü avantajları ve kullanım alanları var. C# ile güçlü ve güvenilir uygulamalar geliştiriyorum. JavaScript ile dinamik ve kullanıcı dostu web sayfaları oluşturuyorum. Python ile veri analizi ve yapay zeka projeleri üzerinde çalışıyorum. Java ile ise büyük ölçekli kurumsal uygulamalar geliştiriyorum. Tüm bu diller, yazılım geliştirme sürecinde bana esneklik ve çeşitli projelerde çalışma imkanı sağlıyor.</p>
+
+                        <p>Yazılım dünyasında her geçen gün yeni teknolojiler ve trendler ortaya çıkıyor. Bu nedenle sürekli öğrenmek ve kendimi geliştirmek benim için çok önemli. Yeni teknolojileri takip ediyor ve projelerimde uygulamaya çalışıyorum. Ayrıca, açık kaynak projelere katkıda bulunarak ve yazılım topluluklarına katılarak bilgi ve deneyimlerimi paylaşmayı seviyorum. Bu, hem kendimi geliştirmemi sağlıyor hem de başkalarına yardımcı olma fırsatı sunuyor.</p>
+
+                        <p>Gelecekte, daha büyük ve karmaşık projelerde yer alarak yazılım dünyasında daha fazla deneyim kazanmak istiyorum. Amacım, teknolojiyle dünyayı daha iyi bir yer haline getirecek çözümler üretmek ve bu süreçte hem kendimi hem de çalıştığım takımları sürekli olarak geliştirmek.</p>
+
+                        <p>Linkedln ve Github adreslerime aşağıdaki iconlara tıklayarak ulaşabilirsiniz.</p>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="https://github.com/tunaykocer" target="_blank">
+                            <i class="fab fa-github fa-2x"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/tunay-koçer" target="_blank">
+                            <i class="fab fa-linkedin fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

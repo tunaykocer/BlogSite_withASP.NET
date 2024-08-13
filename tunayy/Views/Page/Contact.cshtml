@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - tunayy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .contact-info {
+            margin-top: 20px;
+        }
+
+            .contact-info i {
+                margin-right: 10px;
+                cursor: pointer;
+            }
+
+            .contact-info a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+                .contact-info a:hover {
+                    text-decoration: underline;
+                }
+
+        .schedule-details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        function toggleScheduleDetails(id) {
+            var element = document.getElementById(id);
+            var icon = document.getElementById(id + "-icon");
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+                icon.classList.remove("fa-caret-down");
+                icon.classList.add("fa-caret-up");
+            } else {
+                element.style.display = "none";
+                icon.classList.remove("fa-caret-up");
+                icon.classList.add("fa-caret-down");
+            }
+        }
+    </script>
+</head>
+<body>
+    @model tunayy.ViewModels.PageVM
+
+    @{
+        ViewData["Title"] = "Contact";
+
+        string pageThumbnail = "";
+
+        if (Model.Resim == null)
+        {
+            pageThumbnail = "/blog/assets/img/contact-bg.jpg";
+        }
+        else
+        {
+            pageThumbnail = "/thumbnails/" + Model.Resim;
+        }
+    }
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('@pageThumbnail')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>@Model.Baslik</h1>
+                        <span class="subheading">@Model.KisaAciklama</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    @Html.Raw(Model.Aciklama)
+
+                    <div class="contact-info">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.138483078675!2d29.006816399999998!3d41.0441006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7a24975fe5d%3A0xa05d7aa13cfcaf89!2sBah%C3%A7e%C5%9Fehir%20%C3%9Cniversitesi%20Wissen%20Akademie!5e0!3m2!1str!2str!4v1721386979974!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i> Kuloğlu Mh., Barbaros Blv. Yıldız İş Hanı No:9, 34353 Beşiktaş/İstanbul
+                        </p>
+
+                        <p>
+                            Haftaiçi Çalışma Saatleri <i id="weekdays-icon" class="fas fa-caret-down toggle-icon" onclick="toggleScheduleDetails('weekdays')"></i>
+                        </p>
+                        <div id="weekdays" class="schedule-details">
+                            <p>
+                                <strong>Pazartesi - Cuma:</strong> 09:00 - 22:30
+                            </p>
+                        </div>
+
+                        <p>
+                            Haftasonu Çalışma Saatleri <i id="weekend-icon" class="fas fa-caret-down toggle-icon" onclick="toggleScheduleDetails('weekend')"></i>
+                        </p>
+                        <div id="weekend" class="schedule-details">
+                            <p>
+                                <strong>Cumartesi - Pazar:</strong> 09:00 - 17:00
+                            </p>
+                        </div>
+
+                        <p>
+                            <i class="fas fa-envelope"></i> Herhangi bir sorununuz varsa mail atınız: <a href="mailto:tunaykoceer@gmail.com">tunaykoceer@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
