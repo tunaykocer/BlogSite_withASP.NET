@@ -1,6 +1,7 @@
 # Tunay Koçer ISTKA Bitirme Projesi 
 
 ## Blog Sitesi(Proje Açıklaması) <br/>
+*Projede appsettings.json ve tunayy.Entites katmanında Data klasörünün içindeki ApplicationDbContextFactory sayfasındaki Server ismini kendinize göre değiştirip database update yaparak çalıştırabilirsiniz.*
 *Bu blog sitesinde Anasayfa,Hakkımda,İletisim ve Üye girişi alanları mevcuttur.* <br/>
 *Login sayfasından giriş yaparak Admin sayfasına bağlanabilirsiniz . Kullanıcı adi : admin@gmail.com   Şifre: Admin@0011*  <br/>
 *Admin sayfasında siteye post ekleyebilir,silebilir veya güncelleyebilirsiniz.* <br/>
